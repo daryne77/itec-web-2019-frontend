@@ -1,0 +1,3 @@
+[submodule "src/app/ngx-material-generic-form"]
+	path = src/app/ngx-material-generic-form
+	url = https://git.ligaac.ro/liga.ac/ngx-material-generic-form.git
