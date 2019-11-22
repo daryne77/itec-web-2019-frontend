@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfirmationRequestModel, ForgotPasswordModel } from '@core/auth/user.model';
 import { map } from 'rxjs/internal/operators';
 import { ConstantsService } from '@core/services/constants.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '@core/auth/auth.service';
 
 @Injectable({
@@ -19,7 +19,12 @@ export class AccountService {
 
     public register(data: any): Promise<any> {
         const url = `${this.baseUrl}Register`;
-        return this.http.post<{ data: any }>(url, data).toPromise();
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'X-Auth-Path-Prefix': '/',
+            }),
+        };
+        return this.http.post<{ data: any }>(url, data, httpOptions).toPromise();
     }
 
     public async forgotPassword(requestModel: ForgotPasswordModel): Promise<any> {
