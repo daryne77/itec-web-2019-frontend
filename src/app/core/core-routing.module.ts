@@ -9,6 +9,7 @@ import { LoginPageComponent } from '@core/auth/pages/login-page/login-page.compo
 import { AuthGuard } from '@core/auth/guards/auth.guard';
 import { TokenLoginPageComponent } from './auth/pages/token-login/token-login-page.component';
 import { RegisterPageResolver } from '@core/auth/pages/register-page/register-page.resolver';
+import { LoginPageResolver } from '@core/auth/pages/login-page/login-page.resolver';
 
 const routes: Routes = [
     {
@@ -30,6 +31,9 @@ const routes: Routes = [
     },
     {
         path: 'login', component: LoginPageComponent,
+        resolve: {
+            data: LoginPageResolver,
+        },
         canActivate: [AuthGuard],
         data: {authenticated: false},
     },
@@ -60,6 +64,7 @@ const routes: Routes = [
     providers: [
         HomePageResolver,
         RegisterPageResolver,
+        LoginPageResolver,
     ],
 })
 export class CoreRoutingModule {

@@ -1,8 +1,16 @@
 <div class="col-12 menu">
     <div class="container d-flex align-items-center justify-content-between">
         <a class="logo" href="#">LocalGoods</a>
-        <div>
-            User
+        <div *ngIf="isLoggedIn">
+            My Profile
+        </div>
+        <div *ngIf="!isLoggedIn">
+            <a [routerLink]="'login'">
+                Log in
+            </a>
+            <a [routerLink]="'register'">
+                Register
+            </a>
         </div>
     </div>
 </div>
