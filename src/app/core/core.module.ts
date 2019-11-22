@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from '@core/core-routing.module';
 import { LoginPageComponent } from '@core/auth/pages/login-page/login-page.component';
 import { FooterComponent } from '@core/components/footer/footer.component';
-import { HomePageComponent } from '@core/pages/home-page/home-page.component';
 import { RegisterPageComponent } from '@core/auth/pages/register-page/register-page.component';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,7 +24,6 @@ const matImports = [
     declarations: [
         LoginPageComponent,
         FooterComponent,
-        HomePageComponent,
         TokenLoginPageComponent,
         RegisterPageComponent,
         ForgotPasswordPageComponent,
