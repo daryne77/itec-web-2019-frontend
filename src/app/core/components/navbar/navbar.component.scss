@@ -1,0 +1,21 @@
+@import "../../../styles/constants";
+
+.logo {
+  font-family: FjallaOne, sans-serif !important;
+  color: $secondary-color;
+  font-size: 1.2em;
+}
+
+.menu {
+  position: fixed;
+  height: 50px;
+  background-color: $primary-color;
+}
+
+.container {
+  height: 100%;
+}
+
+.margin {
+  height: 50px;
+}

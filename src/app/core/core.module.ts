@@ -11,6 +11,7 @@ import { ForgotPasswordPageComponent } from './auth/pages/forgot-password-page/f
 import { ResetPasswordPageComponent } from './auth/pages/reset-password-page/reset-password-page.component';
 import { ConfirmEmailPageComponent } from './auth/pages/confirm-email-page/confirm-email-page.component';
 import { TokenLoginPageComponent } from './auth/pages/token-login/token-login-page.component';
+import { NavbarComponent } from '@core/components/navbar/navbar.component';
 
 const matImports = [
     MatButtonModule,
@@ -29,6 +30,7 @@ const matImports = [
         ForgotPasswordPageComponent,
         ResetPasswordPageComponent,
         ConfirmEmailPageComponent,
+        NavbarComponent,
     ],
     imports: [
         CommonModule,
@@ -39,6 +41,7 @@ const matImports = [
     ],
     exports: [
         FooterComponent,
+        NavbarComponent,
     ],
 })
 export class CoreModule {

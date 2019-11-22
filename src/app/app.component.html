@@ -1,15 +1,6 @@
 <ngx-loading-bar [color]="'#ffdf40'"></ngx-loading-bar>
 
-<div  class="d-flex">
-  <div class="grid-container">
-    <div></div>
-    <div class="container mb-2 d-flex flex-column">
-      <div class="row">
-        <div class="mb-5 col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-navbar></app-navbar>
+<div class="container px-4 py-2 d-flex flex-column">
+  <router-outlet></router-outlet>
 </div>
-
