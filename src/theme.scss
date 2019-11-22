@@ -1,0 +1,114 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$md-primary: (
+        50 : #e2eced,
+        100 : #b8d1d1,
+        200 : #88b2b3,
+        300 : #589394,
+        400 : #357b7d,
+        500 : #116466,
+        600 : #0f5c5e,
+        700 : #0c5253,
+        800 : #0a4849,
+        900 : #053638,
+        A100 : #6ffbff,
+        A200 : #3cfaff,
+        A400 : #09f9ff,
+        A700 : #00e9ef,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$md-accent: (
+        50 : #fff9f3,
+        100 : #ffefe1,
+        200 : #ffe5cd,
+        300 : #ffdbb8,
+        400 : #ffd3a9,
+        500 : #ffcb9a,
+        600 : #ffc692,
+        700 : #ffbe88,
+        800 : #ffb87e,
+        900 : #ffac6c,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #fff9f5,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #000000,
+                600 : #000000,
+                700 : #000000,
+                800 : #000000,
+                900 : #000000,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$md-warn: (
+        50 : #fbe3e8,
+        100 : #f5b9c5,
+        200 : #ee8a9e,
+        300 : #e75b77,
+        400 : #e13759,
+        500 : #dc143c,
+        600 : #d81236,
+        700 : #d30e2e,
+        800 : #ce0b27,
+        900 : #c5061a,
+        A100 : #ffeeef,
+        A200 : #ffbbc0,
+        A400 : #ff8890,
+        A700 : #ff6f78,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$app-primary: mat-palette($md-primary);
+$app-accent: mat-palette($md-accent);
+$app-warn: mat-palette($md-warn);
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($app-theme);

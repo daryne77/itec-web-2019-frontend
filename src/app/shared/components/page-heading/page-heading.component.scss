@@ -1,0 +1,15 @@
+@import "../../../styles/constants";
+
+.feature-heading {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: $tertiary-color;
+    font-family: FjallaOne, sans-serif !important;
+}
+
+.line {
+    height: 3px;
+    width: 100%;
+    background-color: $primary-color;
+}

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatProgressSpinnerModule, MatSnackBarModule } from '@angular/material';
 import { SnackMessageService } from '@shared/services/snack-message.service';
+import { FormConfigService } from '@shared/services/form-config.service';
+import { PageHeadingComponent } from '@shared/components/page-heading/page-heading.component';
 
 const matImports = [
     MatSnackBarModule,
@@ -10,6 +12,7 @@ const matImports = [
 ];
 
 const exportableComponents = [
+    PageHeadingComponent,
 ];
 
 @NgModule({
@@ -30,6 +33,7 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 SnackMessageService,
+                FormConfigService,
             ],
         };
     }

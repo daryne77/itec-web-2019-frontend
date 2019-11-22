@@ -3,9 +3,6 @@ $secondary-color: #FFCB9A;
 $tertiary-color: #2C3531;
 $quaternary-color: #D9B08C;
 
-$white: white;
-$black: black;
-
 $error-color: crimson;
 
 $gray-0: #EEEEEE;
@@ -17,3 +14,8 @@ $font-x-large: 2em;
 $font-large: 1.3em;
 $font-regular: 1em;
 $font-small: 0.75em;
+
+.mat-oaie {
+  background-color: $primary-color;
+  color: white;
+}

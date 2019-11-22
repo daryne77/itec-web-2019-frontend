@@ -8,18 +8,18 @@ import { ForgotPasswordPageComponent } from '@core/auth/pages/forgot-password-pa
 import { LoginPageComponent } from '@core/auth/pages/login-page/login-page.component';
 import { AuthGuard } from '@core/auth/guards/auth.guard';
 import { TokenLoginPageComponent } from './auth/pages/token-login/token-login-page.component';
+import { RegisterPageResolver } from '@core/auth/pages/register-page/register-page.resolver';
 
 const routes: Routes = [
-    {
-        path: '',
-        loadChildren: '../web/web.module#WebModule',
-    },
     {
         path: 'token-login',
         component: TokenLoginPageComponent,
     },
     {
         path: 'register', component: RegisterPageComponent,
+        resolve: {
+            data: RegisterPageResolver,
+        },
         canActivate: [AuthGuard],
         data: {authenticated: false},
     },
@@ -43,6 +43,10 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {authenticated: false},
     },
+    {
+        path: '',
+        loadChildren: '../web/web.module#WebModule',
+    },
     {path: '**', redirectTo: ''},
 ];
 
@@ -55,6 +59,7 @@ const routes: Routes = [
     ],
     providers: [
         HomePageResolver,
+        RegisterPageResolver,
     ],
 })
 export class CoreRoutingModule {

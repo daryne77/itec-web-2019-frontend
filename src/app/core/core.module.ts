@@ -12,6 +12,7 @@ import { ResetPasswordPageComponent } from './auth/pages/reset-password-page/res
 import { ConfirmEmailPageComponent } from './auth/pages/confirm-email-page/confirm-email-page.component';
 import { TokenLoginPageComponent } from './auth/pages/token-login/token-login-page.component';
 import { NavbarComponent } from '@core/components/navbar/navbar.component';
+import { GenericFormModule } from '@gf/generic-form.module';
 
 const matImports = [
     MatButtonModule,
@@ -38,6 +39,7 @@ const matImports = [
         CoreRoutingModule,
         ...matImports,
         HttpClientModule,
+        GenericFormModule,
     ],
     exports: [
         FooterComponent,

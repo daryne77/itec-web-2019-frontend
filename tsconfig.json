@@ -12,6 +12,9 @@
       "@web/*": [
         "app/web/*"
       ],
+      "@gf/*": [
+        "app/ngx-material-generic-form/*"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
