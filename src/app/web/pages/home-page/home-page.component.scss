@@ -6,10 +6,10 @@
     top: 0;
     transform: translateX(-50%);
     z-index: 10;
-    min-height: 100%;
     min-width: 100%;
 
     @media only screen and (max-width: 600px) {
+
         height: 100%;
     }
 }
@@ -24,5 +24,4 @@
     color: white;
     font-family: $font-heading !important;
     font-size: 3em;
-
 }
