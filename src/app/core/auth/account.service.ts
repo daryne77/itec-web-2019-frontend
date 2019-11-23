@@ -18,7 +18,7 @@ export class AccountService {
     }
 
     public register(data: any): Promise<any> {
-        const url = `${this.baseUrl}Register`;
+        const url = `${this.baseUrl}RegisterShop`;
         const httpOptions = {
             headers: new HttpHeaders({
                 'X-Auth-Path-Prefix': '/',

@@ -15,7 +15,7 @@ export class ShopPageResolver implements Resolve<any> {
         Promise<{products: ProductModel[]}> {
         const products: ProductModel[] =  [
             {
-                name: 'Clătite de banane cu ouă',
+                name: 'Clătite de banane cu ouă de două sau de mai multe ori',
                 price: 2,
                 unit: 'Kg',
                 description: 'text',

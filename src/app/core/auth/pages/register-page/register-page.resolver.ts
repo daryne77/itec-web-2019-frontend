@@ -12,7 +12,7 @@ export class RegisterPageResolver implements Resolve<any> {
         Promise<{ formConfig: ElementConfig[] }> {
 
         return new Promise(async (resolve) => {
-                const formConfig = await this.formConfigService.getConfig('RegisterRequestModel').toPromise();
+                const formConfig = await this.formConfigService.getConfig('ShopRegisterRequestModel').toPromise();
                 resolve({
                     formConfig,
                 });
