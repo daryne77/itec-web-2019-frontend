@@ -1,12 +1,12 @@
 {
   "/api/*": {
-    "target": "https://dev.unihack.eu",
+    "target": "http://192.168.7.24:7002/",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true
   },
   "/content/*": {
-    "target": "https://dev.unihack.eu",
+    "target": "http://192.168.7.24:7002/",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true
