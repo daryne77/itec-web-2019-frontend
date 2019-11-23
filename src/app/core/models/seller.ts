@@ -1,6 +1,5 @@
-import { EntityModel } from '@gf/model/entity.model';
+import { ProfileModel } from '@core/models/profile';
 
-export class SellerModel extends EntityModel {
-    public name: string;
-    public location: string;
+export class SellerModel extends ProfileModel {
+    public targetType: 'Private' | 'Company';
 }

@@ -1,3 +1,5 @@
+@import "styles/constants";
+
 .product-card {
   height: 400px;
 }
@@ -11,7 +13,7 @@
   width: calc(100% - 32px);
 }
 
-.location-wrapper {
+.address-wrapper {
   width: calc(100% - 32px);
 }
 
@@ -19,4 +21,8 @@ mat-card-footer {
   padding-left: 32px;
   padding-right: 32px;
   padding-bottom: 20px;
+}
+
+.pin {
+  color: $primary-color;
 }

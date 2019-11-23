@@ -4,7 +4,8 @@ import { ElementConfig } from '@gf/model/config.interface';
 import { FormConfigService } from '@shared/services/form-config.service';
 import { ProfileService } from '@core/services/entity-services/profile.service';
 import { AuthService } from '@core/auth/auth.service';
-import { ProfileModel } from '@core/models/profile';
+import { BuyerModel } from '@core/models/buyer';
+import { SellerModel } from '@core/models/seller';
 
 @Injectable()
 export class ProfilePageResolver implements Resolve<any> {
@@ -13,7 +14,11 @@ export class ProfilePageResolver implements Resolve<any> {
                 private auth: AuthService) {}
 
     public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-        Promise<{ formConfig: ElementConfig[], type: 'Buyer' | 'Seller', initialData: ProfileModel }> {
+        Promise<{
+            formConfig: ElementConfig[],
+            type: 'Buyer' | 'Seller',
+            initialData: BuyerModel | SellerModel,
+        }> {
 
         return new Promise(async (resolve) => {
             const isBuyer = await this.auth.hasRole('Buyer');

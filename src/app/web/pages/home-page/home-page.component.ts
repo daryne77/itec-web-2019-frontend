@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@core/auth/auth.service';
-import { User } from '@core/auth/user.model';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/internal/operators';
+import { AuthService } from '@core/auth/auth.service';
 
 @Component({
     selector: 'app-home',
@@ -10,5 +8,15 @@ import { map } from 'rxjs/internal/operators';
     styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
+    public userType: 'Buyer' | 'Seller' | 'Guest';
 
+    constructor(private actr: ActivatedRoute,
+                private auth: AuthService) {
+        this.userType = this.actr.snapshot.data.data.userType;
+        this.auth.authStateChanged.subscribe(state => {
+            if (!state) {
+                this.userType = 'Guest';
+            }
+        });
+    }
 }

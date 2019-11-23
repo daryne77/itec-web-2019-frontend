@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ElementConfig } from '@gf/model/config.interface';
 import { GenericFormComponent } from '@gf/generic-form.component';
 import { ProfileService } from '@core/services/entity-services/profile.service';
-import { ProfileModel } from '@core/models/profile';
+import { BuyerModel } from '@core/models/buyer';
+import { SellerModel } from '@core/models/seller';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +18,7 @@ export class ProfilePageComponent {
 
     public formConfig: ElementConfig[] = [];
     private readonly type: 'Buyer' | 'Seller';
-    private initialData: ProfileModel;
+    private initialData: BuyerModel | SellerModel;
 
     public saving: boolean;
 

@@ -3,13 +3,14 @@ import { ConstantsService } from '@core/services/constants.service';
 import { map } from 'rxjs/internal/operators';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '@core/auth/auth.service';
-import { ProfileModel } from '@core/models/profile';
 import { PatchEntityService } from '@core/services/entity-services/patch-entity.service';
+import { BuyerModel } from '@core/models/buyer';
+import { SellerModel } from '@core/models/seller';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ProfileService extends PatchEntityService<ProfileModel> {
+export class ProfileService extends PatchEntityService<BuyerModel | SellerModel> {
     private readonly baseUrl: string;
 
     constructor(
@@ -21,7 +22,7 @@ export class ProfileService extends PatchEntityService<ProfileModel> {
         this.baseUrl = `${this.constants.apiUrl}Profiles/`;
     }
 
-    public async getOwn(): Promise<ProfileModel> {
+    public async getOwn(): Promise<BuyerModel | SellerModel> {
         const url = `${this.baseUrl}GetOwn`;
         const options = await this.auth.getOptions(true);
 
@@ -32,7 +33,8 @@ export class ProfileService extends PatchEntityService<ProfileModel> {
         }
     }
 
-    public async updateProfile(type: 'Buyer' | 'Seller', initialData: ProfileModel, data: ProfileModel): Promise<ProfileModel> {
+    public async updateProfile(type: 'Buyer' | 'Seller', initialData: BuyerModel | SellerModel, data: BuyerModel | SellerModel)
+        : Promise<BuyerModel | SellerModel> {
         const url = `${this.baseUrl}Save${type}Profile`;
         return this.patch(initialData, data, url);
     }

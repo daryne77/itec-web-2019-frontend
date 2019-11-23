@@ -1,6 +1,20 @@
 <div class="bg-wrapper">
     <img src="./assets/img/dark-vegetables.jpg" class="bg"/>
 </div>
-<div class="title">
-    Cumpără produse locale
+<div class="overtext">
+    <div class="title">
+        Descoperă produsele micilor antreprenori locali!
+    </div>
+    <div class="action">
+        <a *ngIf="userType === 'Guest'" [routerLink]="'register'">
+            Înscrie-te!
+        </a>
+        <a *ngIf="userType === 'Buyer'" [routerLink]="'shop'">
+            Cumpără acum
+        </a>
+        <a *ngIf="userType === 'Seller'" [routerLink]="'store'">
+            Verifică-ți magazinul
+        </a>
+    </div>
 </div>
+

@@ -6,9 +6,9 @@
                 <mat-card-subtitle>
                     <div class="d-flex flex-row flex-nowrap">
                         <fa-icon [icon]="['fas', 'map-marker']" class="mr-3 pin"></fa-icon>
-                        <div class="location-wrapper d-block">
+                        <div class="address-wrapper d-block">
                             <span class="d-inline-block text-truncate full-width">
-                                {{ product.seller.location }}
+                                {{ product.seller.address?.city }}
                             </span>
                         </div>
                     </div>
