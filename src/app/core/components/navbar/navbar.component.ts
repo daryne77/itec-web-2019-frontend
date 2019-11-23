@@ -8,12 +8,21 @@ import { AuthService } from '@core/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
   public isLoggedIn = false;
+  public loaded = false;
 
   constructor(private auth: AuthService) {
-    this.isLoggedIn = this.auth.authState;
+    this.auth.authStateChanged.subscribe(async state => {
+      this.isLoggedIn = state;
+    });
   }
 
-  public ngOnInit() {
+  public async ngOnInit() {
+    this.isLoggedIn = await this.auth.authStateAsync;
+    this.loaded = true;
+  }
+
+  public async logout() {
+    await this.auth.logout();
   }
 
 }

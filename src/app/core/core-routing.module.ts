@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from '@core/auth/pages/register-page/register-page.component';
 import { ResetPasswordPageComponent } from '@core/auth/pages/reset-password-page/reset-password-page.component';
 import { ConfirmEmailPageComponent } from '@core/auth/pages/confirm-email-page/confirm-email-page.component';
-import { HomePageResolver } from '@web/pages/home-page/home-page.resolver';
 import { ForgotPasswordPageComponent } from '@core/auth/pages/forgot-password-page/forgot-password-page.component';
 import { LoginPageComponent } from '@core/auth/pages/login-page/login-page.component';
 import { AuthGuard } from '@core/auth/guards/auth.guard';
@@ -62,7 +61,6 @@ const routes: Routes = [
         RouterModule,
     ],
     providers: [
-        HomePageResolver,
         RegisterPageResolver,
         LoginPageResolver,
     ],

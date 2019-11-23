@@ -10,14 +10,5 @@ import { map } from 'rxjs/internal/operators';
     styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-    public isLoggedIn = false;
-    public user: User;
 
-    constructor(private auth: AuthService,
-                private actr: ActivatedRoute) {
-
-        this.actr.data.pipe(map(data => data.data)).subscribe((data) => {
-            Object.assign(this, data);
-        });
-    }
 }

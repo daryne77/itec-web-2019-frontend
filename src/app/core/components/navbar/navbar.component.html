@@ -1,8 +1,10 @@
 <div class="col-12 menu">
-    <div class="container d-flex align-items-center justify-content-between">
+    <div *ngIf="loaded" class="container d-flex align-items-center justify-content-between">
         <a class="logo" href="#">LocalGoods</a>
         <div *ngIf="isLoggedIn">
-            My Profile
+            <a [routerLink]="" (click)="logout()">
+                Log out
+            </a>
         </div>
         <div *ngIf="!isLoggedIn">
             <a [routerLink]="'login'">
