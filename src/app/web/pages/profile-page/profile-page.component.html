@@ -8,6 +8,8 @@
     ></gf-generic-form>
 </div>
 
-<div class="d-flex justify-content-end">
+<app-search-address-map [initialAddress]="mapAddress" (onLocationChange)="updateLocation($event)"></app-search-address-map>
+
+<div class="d-flex justify-content-end my-5">
     <gf-submit-button text="Salvează" (click)="submit()" [loading]="saving"></gf-submit-button>
 </div>

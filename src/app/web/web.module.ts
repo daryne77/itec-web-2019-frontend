@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsGridComponent } from './components/products-grid/products-grid.component';
 import { ProfilePageComponent } from '@web/pages/profile-page/profile-page.component';
 import { GenericFormModule } from '@gf/generic-form.module';
+import { SearchAddressMapComponent } from '@web/components/search-address-map/search-address-map.component';
 
 const matImports = [
     MatButtonModule,
@@ -24,6 +25,7 @@ const matImports = [
         ProfilePageComponent,
         ProductsListComponent,
         ProductsGridComponent,
+        SearchAddressMapComponent,
     ],
     imports: [
         CommonModule,

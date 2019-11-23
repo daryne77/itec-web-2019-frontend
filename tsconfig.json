@@ -14,6 +14,9 @@
       ],
       "@gf/*": [
         "app/ngx-material-generic-form/*"
+      ],
+      "@env/*": [
+        "environments/*"
       ]
     },
     "outDir": "./dist/out-tsc",

@@ -13,6 +13,7 @@ export class PatchEntityService<T extends EntityModel> {
         const options = await this.auth.getOptions(true);
         const propertiesToUpdate = {};
         Object.entries(data).forEach(([key, val]) => {
+            console.log(key, val);
             if (!initialData || val !== initialData[key]) {
                 propertiesToUpdate[key] = true;
             }
