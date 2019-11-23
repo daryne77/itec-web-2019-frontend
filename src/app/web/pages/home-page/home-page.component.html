@@ -6,10 +6,7 @@
         Descoperă produsele micilor antreprenori locali!
     </div>
     <div class="action">
-        <a *ngIf="userType === 'Guest'" [routerLink]="'register'">
-            Înscrie-te!
-        </a>
-        <a *ngIf="userType === 'Buyer'" [routerLink]="'shop'">
+        <a *ngIf="userType === 'Buyer' || userType === 'Guest'" [routerLink]="'shop'">
             CUMPĂRĂ
         </a>
         <a *ngIf="userType === 'Seller'" [routerLink]="'store'">

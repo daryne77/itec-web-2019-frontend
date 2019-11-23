@@ -50,7 +50,10 @@ export class SearchAddressMapComponent implements OnInit {
         }
         this.buildPlatform();
         this.buildMap();
-        this.addMarker(this.initialAddress.location);
+
+        if (this.initialAddress) {
+            this.addMarker(this.initialAddress.location);
+        }
     }
 
     private buildPlatform() {
@@ -68,8 +71,11 @@ export class SearchAddressMapComponent implements OnInit {
             this.mapElement.nativeElement,
             defaultLayers.vector.normal.map,
             {
-                zoom: 13,
-                center: this.initialAddress.location,
+                zoom: 10,
+                center: this.initialAddress ? this.initialAddress.location : {
+                    lat: 45.7309454,
+                    lng: 21.2677993,
+                },
             }
         );
 

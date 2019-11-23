@@ -35,8 +35,9 @@ export class ProfilePageComponent {
         this.formConfig = this.actr.snapshot.data.data.formConfig;
         this.type = this.actr.snapshot.data.data.type;
         this.initialData = this.actr.snapshot.data.data.initialData;
-        this.mapAddress = this.initialData.address;
-        console.log(this.initialData);
+        if (this.initialData) {
+            this.mapAddress = this.initialData.address;
+        }
     }
 
     public async submit() {
@@ -57,7 +58,9 @@ export class ProfilePageComponent {
     }
 
     public formBuild(): void {
-        this.form.patchValues(this.initialData);
+        if (this.initialData) {
+            this.form.patchValues(this.initialData);
+        }
     }
 
     public async updateLocation(location) {

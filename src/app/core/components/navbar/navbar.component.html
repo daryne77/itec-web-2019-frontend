@@ -2,11 +2,11 @@
     <div *ngIf="loaded" class="container d-flex align-items-center justify-content-between">
         <a class="logo" [routerLink]="'/'">LocalGoods</a>
         <div *ngIf="isLoggedIn">
+            <a class="mr-4" [routerLink]="'profile'">
+                Profil
+            </a>
             <a [routerLink]="" (click)="logout()">
                 Deconectare
-            </a>
-            <a [routerLink]="'profile'">
-                Profil
             </a>
         </div>
         <div *ngIf="!isLoggedIn">
