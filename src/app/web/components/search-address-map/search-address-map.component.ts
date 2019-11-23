@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { AddressModel } from '@core/models/address.model';
 
 declare var H: any;
@@ -13,8 +12,7 @@ declare var H: any;
 })
 export class SearchAddressMapComponent implements OnInit {
 
-    public constructor(@Inject(PLATFORM_ID) private platformId: Object,
-                       private http: HttpClient) {
+    public constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         this.isBrowser = isPlatformBrowser(this.platformId);
     }
 
@@ -78,6 +76,8 @@ export class SearchAddressMapComponent implements OnInit {
                 },
             }
         );
+
+        window.addEventListener('resize', () => this.map.getViewPort().resize());
 
         // Enable the event system on the search-address-map instance:
         const mapEvents = new H.mapevents.MapEvents(this.map);
