@@ -21,10 +21,10 @@ export class TokenLoginPageComponent {
                     email: params.userEmail,
                     password: params.token,
                 }).then(_ => {
-                    this.snack.display('Logged in successfully!');
+                    this.snack.display('Autentificat cu succes!');
                     this.router.navigate(['/']);
                 }, _ => {
-                    this.snack.showErrorMessage('Authentication failed.');
+                    this.snack.showErrorMessage('Autentificare eșuată.');
                     this.auth.logout();
                 });
             } else {

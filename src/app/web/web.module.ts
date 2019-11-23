@@ -8,6 +8,8 @@ import { ShopPageComponent } from './pages/shop/shop-page.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsGridComponent } from './components/products-grid/products-grid.component';
+import { ProfilePageComponent } from '@web/pages/profile-page/profile-page.component';
+import { GenericFormModule } from '@gf/generic-form.module';
 
 const matImports = [
     MatButtonModule,
@@ -19,6 +21,7 @@ const matImports = [
     declarations: [
         HomePageComponent,
         ShopPageComponent,
+        ProfilePageComponent,
         ProductsListComponent,
         ProductsGridComponent,
     ],
@@ -27,6 +30,7 @@ const matImports = [
         WebRoutingModule,
         SharedModule,
         FontAwesomeModule,
+        GenericFormModule,
         ...matImports,
     ],
 })

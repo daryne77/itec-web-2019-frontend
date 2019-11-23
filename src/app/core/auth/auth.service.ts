@@ -62,6 +62,16 @@ export class AuthService {
         return session.roles.indexOf(role) !== -1;
     }
 
+    public async getRoles(): Promise<string[]> {
+        const session = await this.getSession();
+
+        if (!session.roles) {
+            return [];
+        }
+
+        return session.roles.split(',');
+    }
+
     public get localAuthState(): boolean {
         return !!this._token;
     }

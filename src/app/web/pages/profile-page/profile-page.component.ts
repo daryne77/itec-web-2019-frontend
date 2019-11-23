@@ -1,31 +1,33 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '@core/auth/auth.service';
 import { SnackMessageService } from '@shared/services/snack-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElementConfig } from '@gf/model/config.interface';
 import { GenericFormComponent } from '@gf/generic-form.component';
+import { ProfileService } from '@core/services/entity-services/profile.service';
+import { ProfileModel } from '@core/models/profile';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login-page.component.html',
-    styleUrls: ['./login-page.component.scss'],
+    templateUrl: './profile-page.component.html',
+    styleUrls: ['./profile-page.component.scss'],
 })
-export class LoginPageComponent {
+export class ProfilePageComponent {
     @ViewChild('form', { static: false })
     public form: GenericFormComponent;
 
     public formConfig: ElementConfig[] = [];
+    private readonly type: 'Buyer' | 'Seller';
+    private initialData: ProfileModel;
 
     public saving: boolean;
 
-    constructor(private authService: AuthService,
+    constructor(private profileService: ProfileService,
                 private snack: SnackMessageService,
                 private router: Router,
                 private actr: ActivatedRoute) {
         this.formConfig = this.actr.snapshot.data.data.formConfig;
-    }
-
-    public ngOnInit() {
+        this.type = this.actr.snapshot.data.data.type;
+        this.initialData = this.actr.snapshot.data.data.initialData;
     }
 
     public async submit() {
@@ -36,9 +38,7 @@ export class LoginPageComponent {
         }
         this.saving = true;
         try {
-            await this.authService.login(this.form.value);
-            const returnUrl = this.actr.snapshot.queryParams['returnUrl'];
-            await this.router.navigate(returnUrl ? [returnUrl] : ['/']);
+            this.initialData = await this.profileService.updateProfile(this.type, this.initialData, this.form.value);
             this.snack.display('Succes!');
         } catch (e) {
             this.snack.showError(e);
@@ -47,6 +47,7 @@ export class LoginPageComponent {
     }
 
     public formBuild(): void {
+        this.form.patchValues(this.initialData);
     }
 
 }

@@ -32,7 +32,7 @@ export class RegisterPageComponent {
 
         if (!this.form.valid) {
             this.form.markAsTouched();
-            this.snack.showErrorMessage('Check the form before submitting.');
+            this.snack.showErrorMessage('Verifică formularul!');
             return;
         }
 

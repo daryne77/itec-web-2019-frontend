@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
             return true;
         }
 
-        this.snack.display('You are not allowed to access that page.');
+        this.snack.display('Nu ai permisiuni pentru a accesa pagina.');
 
         if (authenticated) {
             await this.router.navigate(['/login'], { queryParams: { returnUrl: '/' + next.url } });

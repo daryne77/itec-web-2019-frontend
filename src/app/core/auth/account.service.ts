@@ -64,17 +64,4 @@ export class AccountService {
         }
         return response && response.data;
     }
-
-    public async getOwnAccount(): Promise<any> {
-        const url = `${this.baseUrl}GetOwn`;
-        const options = await this.authService.getOptions(true);
-
-        try {
-            return await this.http.get<{ data: any }>(url, options).pipe(map(res => {
-                return res.data;
-            })).toPromise();
-        } catch {
-            return {};
-        }
-    }
 }

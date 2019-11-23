@@ -17,7 +17,7 @@ export class RoleGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Promise<boolean> {
         if (!await this.authService.hasRole(next.data['requiredRole'])) {
-            this.snack.display('You have to be ' + next.data['requiredRole'] + ' to access this page.');
+            this.snack.display('Nu ai permisiuni pentru a accesa pagina.');
             await this.router.navigate(['/']);
             return false;
         } else {

@@ -22,7 +22,7 @@ export class ConfirmEmailPageComponent {
             this.confirmationParams = {userId: params['userId'], token: params['token']};
             if (!this.validConfirmationParams) {
                 await this.router.navigate(['/']);
-                this.snack.display('Invalid email confirmation url.');
+                this.snack.display('URL de confirmare invalid.');
             } else {
                 await this.sendRequest();
             }

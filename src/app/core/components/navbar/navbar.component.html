@@ -5,6 +5,9 @@
             <a [routerLink]="" (click)="logout()">
                 Deconectare
             </a>
+            <a [routerLink]="'profile'">
+                Profil
+            </a>
         </div>
         <div *ngIf="!isLoggedIn">
             <a [routerLink]="'login'">
