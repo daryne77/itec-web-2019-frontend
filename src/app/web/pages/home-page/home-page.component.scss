@@ -1,11 +1,21 @@
 @import "styles/constants";
 
-.background {
+.bg {
     position: fixed;
-    left: 0;
-    bottom: 0;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
     z-index: 10;
-    max-height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+
+    @media only screen and (max-width: 600px) {
+        height: 100%;
+    }
+}
+
+.bg-wrapper {
+    position: relative;
 }
 
 .title {

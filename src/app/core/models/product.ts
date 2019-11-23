@@ -8,7 +8,7 @@ export class ProductModel extends EntityModel {
     public thumbnail?: string;
     public photos?: string[];
     public price: number;
-    public unit: 'Kg' | 'Liter' | Bucată;
+    public unit: 'Kg' | 'Litru' | 'Bucată';
     public seller: SellerModel;
     public availableUnits: number;
 }
