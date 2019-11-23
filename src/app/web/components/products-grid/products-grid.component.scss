@@ -1,0 +1,22 @@
+.product-card {
+  height: 400px;
+}
+
+.product-img {
+  height: 150px;
+  object-fit: cover;
+}
+
+::ng-deep .mat-card-header-text {
+  width: calc(100% - 32px);
+}
+
+.location-wrapper {
+  width: calc(100% - 32px);
+}
+
+mat-card-footer {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 20px;
+}

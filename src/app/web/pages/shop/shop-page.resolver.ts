@@ -44,6 +44,50 @@ export class ShopPageResolver implements Resolve<any> {
                 description: 'text',
                 seller: {
                     name: 'Găină',
+                    location: 'Ceva mai lunglunglunglung lung lung',
+                },
+            },
+            {
+                name: 'Clătite de banane cu ouă',
+                price: 2,
+                unit: 'Kg',
+                description: 'text',
+                availableUnits: 30,
+                seller: {
+                    name: 'Găină',
+                    location: 'TM',
+                },
+            },
+            {
+                name: 'Ouă',
+                price: 20,
+                unit: 'Kg',
+                description: 'text',
+                availableUnits: 30,
+                seller: {
+                    name: 'Găină',
+                    location: 'Cluj',
+                },
+            },
+            {
+                name: 'Ouă',
+                price: 210,
+                availableUnits: 30,
+                unit: 'Item',
+                description: 'text',
+                seller: {
+                    name: 'Găină',
+                    location: 'Ceva mai lung',
+                },
+            },
+            {
+                name: 'Ouă',
+                price: 210,
+                availableUnits: 30,
+                unit: 'Item',
+                description: 'text',
+                seller: {
+                    name: 'Găină',
                     location: 'Ceva mai lung',
                 },
             }];

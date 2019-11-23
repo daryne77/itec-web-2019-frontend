@@ -7,6 +7,7 @@ import { HomePageComponent } from '@web/pages/home-page/home-page.component';
 import { ShopPageComponent } from './pages/shop/shop-page.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductsGridComponent } from './components/products-grid/products-grid.component';
 
 const matImports = [
     MatButtonModule,
@@ -19,6 +20,7 @@ const matImports = [
         HomePageComponent,
         ShopPageComponent,
         ProductsListComponent,
+        ProductsGridComponent,
     ],
     imports: [
         CommonModule,

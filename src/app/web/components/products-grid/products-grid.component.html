@@ -1,0 +1,26 @@
+<div class="d-flex row flex-wrap">
+    <div class="col-12 col-md-6 col-lg-3" *ngFor="let product of products">
+        <mat-card class="mb-3 product-card d-flex flex-column">
+            <img mat-card-image src="./assets/img/egg.jpg" class="product-img"/>
+            <mat-card-header class="align-items-center">
+                <mat-card-subtitle>
+                    <div class="d-flex flex-row flex-nowrap">
+                        <fa-icon [icon]="['fas', 'map-marker']" class="mr-3 pin"></fa-icon>
+                        <div class="location-wrapper d-block">
+                            <span class="d-inline-block text-truncate full-width">
+                                {{ product.seller.location }}
+                            </span>
+                        </div>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-title>{{ product.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="flex-grow-1"></mat-card-content>
+            <mat-card-footer>
+                <div>
+                    <span class="font-weight-bold">{{ product.price }}</span> RON/{{ product.unit | lowercase }}
+                </div>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>
