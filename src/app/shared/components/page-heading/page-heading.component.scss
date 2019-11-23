@@ -3,8 +3,8 @@
 .feature-heading {
     margin-top: 50px;
     margin-bottom: 30px;
-    font-size: 2rem;
-    color: $tertiary-color;
+    font-size: 2.3rem;
+    color: $primary-color;
     font-family: $font-heading !important;
     width: fit-content;
 }
@@ -12,5 +12,5 @@
 .line {
     height: 3px;
     flex-grow: 1;
-    background-color: $primary-color;
+    background-color: $tertiary-color;
 }
