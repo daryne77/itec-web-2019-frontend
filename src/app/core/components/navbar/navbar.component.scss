@@ -1,7 +1,7 @@
 @import "styles/constants";
 
 .logo {
-  font-family: FjallaOne, sans-serif !important;
+  font-family: $font-heading !important;
   color: $secondary-color;
   font-size: 1.2em;
 }
@@ -9,7 +9,8 @@
 .menu {
   position: fixed;
   height: 50px;
-  background-color: $primary-color;
+  z-index: 20;
+  background-color: #00000070;
 
   a {
     color: $secondary-color;

@@ -40,7 +40,7 @@ export class ShopPageResolver implements Resolve<any> {
                 name: 'Ouă',
                 price: 210,
                 availableUnits: 30,
-                unit: 'Item',
+                unit: Bucată,
                 description: 'text',
                 seller: {
                     name: 'Găină',
@@ -73,7 +73,7 @@ export class ShopPageResolver implements Resolve<any> {
                 name: 'Ouă',
                 price: 210,
                 availableUnits: 30,
-                unit: 'Item',
+                unit: Bucată,
                 description: 'text',
                 seller: {
                     name: 'Găină',
@@ -84,7 +84,7 @@ export class ShopPageResolver implements Resolve<any> {
                 name: 'Ouă',
                 price: 210,
                 availableUnits: 30,
-                unit: 'Item',
+                unit: Bucată,
                 description: 'text',
                 seller: {
                     name: 'Găină',

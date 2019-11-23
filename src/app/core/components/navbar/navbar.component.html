@@ -1,17 +1,17 @@
 <div class="col-12 menu">
     <div *ngIf="loaded" class="container d-flex align-items-center justify-content-between">
-        <a class="logo" href="#">LocalGoods</a>
+        <a class="logo" [routerLink]="'/'">LocalGoods</a>
         <div *ngIf="isLoggedIn">
             <a [routerLink]="" (click)="logout()">
-                Log out
+                Deconectare
             </a>
         </div>
         <div *ngIf="!isLoggedIn">
             <a [routerLink]="'login'">
-                Log in
+                Autentificare
             </a>
             <a [routerLink]="'register'">
-                Register
+                Înregistrare
             </a>
         </div>
     </div>
