@@ -5,4 +5,5 @@ export class CategoryModel extends EntityModel {
     public parent: CategoryModel;
     public fullName: string;
     public checked?: boolean;
+    public children?: CategoryModel[];
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductModel } from '@core/models/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-grid',
@@ -11,6 +12,9 @@ export class ProductsGridComponent {
   @Input()
   public products: ProductModel[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  public goToProduct(product: ProductModel) {
+    this.router.navigate([`/product/${product.id}`]);
+  }
 }

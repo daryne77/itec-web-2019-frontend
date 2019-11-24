@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="font-weight-light col-4 d-none d-lg-flex offset-lg-2">
+    <div class="font-weight-light col-4 d-none d-lg-flex offset-lg-1">
         <div class="d-flex align-items-center" *ngIf="!isSeller">
             <fa-icon [icon]="['fas', 'map-marker']" class="mr-3 pin"></fa-icon>
             {{ product.seller.address?.city }}
@@ -18,7 +18,7 @@
         </div>
 
     </div>
-    <div class="col-2 offset-4 offset-lg-0">
+    <div class="col-3 offset-3 offset-lg-0">
         <div class="row align-items-center">
             <div class="col-12 col-md-5 price font-weight-bold d-flex justify-content-center justify-content-md-end">
                 <div>{{ product.price}}</div>
@@ -28,6 +28,6 @@
     </div>
 </mat-card>
 
-<div *ngIf="!products.length">
-    Încă nu este nimic aici :(
+<div *ngIf="!products.length" class="container">
+    Nu este nimic aici :(
 </div>

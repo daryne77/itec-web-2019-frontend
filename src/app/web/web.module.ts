@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { WebRoutingModule } from '@web/web-routing.module';
-import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatTooltipModule } from '@angular/material';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule, MatIconModule, MatListModule,
+    MatRadioModule,
+    MatTooltipModule,
+} from '@angular/material';
 import { HomePageComponent } from '@web/pages/home-page/home-page.component';
 import { ShopPageComponent } from './pages/shop/shop-page.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
@@ -23,7 +30,10 @@ const matImports = [
     MatTooltipModule,
     MatCardModule,
     MatCheckboxModule,
+    MatRadioModule,
+    MatIconModule,
     MatChipsModule,
+    MatListModule,
 ];
 
 const bootstrapImports = [
