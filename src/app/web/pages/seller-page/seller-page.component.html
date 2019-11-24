@@ -1,0 +1,13 @@
+<app-page-heading [text]="seller.name"></app-page-heading>
+
+<div class="mb-5">
+    <div class="d-flex flex-row mb-3">
+        <fa-icon [icon]="['fas', 'map-marker']" class="mr-3 pin"></fa-icon>
+        <div>
+            {{ seller.address?.address }}
+        </div>
+    </div>
+    <app-seller-address-map [address]="seller.address"></app-seller-address-map>
+</div>
+
+<app-products-grid [products]="products"></app-products-grid>

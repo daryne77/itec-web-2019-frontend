@@ -14,6 +14,10 @@ import { AddProductPageComponent } from '@web/pages/add-product-page/add-product
 import { AddProductPageResolver } from '@web/pages/add-product-page/add-product-page-resolver.service';
 import { ProductPageResolver } from '@web/pages/product-page/product-page-resolver.service';
 import { ProductPageComponent } from '@web/pages/product-page/product-page.component';
+import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
+import { SellerPageResolver } from '@web/pages/seller-page/seller-page-resolver.service';
+import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.component';
+import { MyOrdersPageResolver } from '@web/pages/my-orders-page/my-orders-page-resolver.service';
 
 const routes: Routes = [
     { path: '',  component: HomePageComponent, resolve: {
@@ -28,11 +32,21 @@ const routes: Routes = [
             data: ProductPageResolver,
         },
     },
+    { path: 'seller/:id',  component: SellerPageComponent, resolve: {
+            data: SellerPageResolver,
+        },
+    },
     { path: 'my-store',  component: MyStorePageComponent, resolve: {
             data: MyStorePageResolver,
         },
         canActivate: [AuthGuard, RoleGuard],
         data: {authenticated: true, requiredRole: 'Seller'},
+    },
+    { path: 'my-orders',  component: MyOrdersPageComponent, resolve: {
+            data: MyOrdersPageResolver,
+        },
+        canActivate: [AuthGuard, RoleGuard],
+        data: {authenticated: true, requiredRole: 'Buyer'},
     },
     { path: 'add-product',  component: AddProductPageComponent, resolve: {
             data: AddProductPageResolver,
@@ -65,6 +79,8 @@ const routes: Routes = [
         MyStorePageResolver,
         AddProductPageResolver,
         ProductPageResolver,
+        SellerPageResolver,
+        MyOrdersPageResolver,
     ],
 })
 export class WebRoutingModule { }

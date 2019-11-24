@@ -33,6 +33,17 @@ export class ProfileService extends PatchEntityService<BuyerModel | SellerModel>
         }
     }
 
+    public async getSellerProfile(id: string): Promise<SellerModel> {
+        const url = `${this.baseUrl}GetSellerProfile/${id}`;
+
+        try {
+            return await this.http.get<{ data: any }>(url).pipe(map(res => res.data)).toPromise();
+        } catch {
+            return null;
+        }
+    }
+
+
     public async updateProfile(type: 'Buyer' | 'Seller', initialData: BuyerModel | SellerModel, data: BuyerModel | SellerModel)
         : Promise<BuyerModel | SellerModel> {
         const url = `${this.baseUrl}Save${type}Profile`;
