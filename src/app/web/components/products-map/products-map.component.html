@@ -1,1 +1,3 @@
 <div #map class="here-map" [hidden]="!loaded" id="map"></div>
+
+<app-products-list *ngIf="selectedBag && selectedBag.products" [products]="selectedBag.products"></app-products-list>

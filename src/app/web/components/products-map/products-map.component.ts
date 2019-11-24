@@ -1,10 +1,10 @@
-import { Component, ElementRef, Inject, Input, PLATFORM_ID, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { environment } from '@env/environment';
 import { ProductModel } from '@core/models/product';
-import { group } from '@angular/animations';
-import { of } from 'rxjs';
+import { AddressModel } from '@core/models/address.model';
+import { ProfileService } from '@core/services/entity-services/profile.service';
+import { BuyerModel } from '@core/models/buyer';
+import { MapService } from '@core/services/map.service';
 
 declare var H: any;
 
@@ -13,11 +13,11 @@ declare var H: any;
     templateUrl: './products-map.component.html',
     styleUrls: ['./products-map.component.scss'],
 })
-export class ProductsMapComponent {
-    public svgMarkup: string;
+export class ProductsMapComponent implements OnInit, OnChanges {
 
-    public constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-        this.isBrowser = isPlatformBrowser(this.platformId);
+    public constructor(
+        private profileService: ProfileService,
+        private mapsService: MapService) {
 
         this.svgMarkup = '<svg width="30" height="30" ' +
             'xmlns="http://www.w3.org/2000/svg">' +
@@ -25,31 +25,49 @@ export class ProductsMapComponent {
             'height="22" /></svg>';
     }
 
+    private get mapLoaded(): boolean {
+        return typeof H !== 'undefined' && H && H.service && H.service.Platform;
+    }
+
+    public svgMarkup: string;
+
     @Input() public products: ProductModel[];
 
-    @ViewChild('map', { static: true })
+    @ViewChild('map', {static: true})
     public mapElement: ElementRef;
     private platform: any;
     private map: any;
     private ui: any;
     private behavior: any;
     // @ts-ignore
-    private markers = new H.map.Group();
+    private markersGroup = new H.map.Group();
 
     public hereApiKey = '2yOL_eu8-2JkY7WtJSLNdeOC7FDqzjqDEGHYEFTdQYA';
 
     public loaded = false;
-    private readonly isBrowser: boolean;
 
-    public ngOnInit() {
-        if (!this.isBrowser) {
-            return;
-        }
+    private myProfile: BuyerModel;
+
+    private profileMarker: any;
+
+    private markersGroupAdded: boolean;
+
+    public selectedBag: LocationBag;
+
+    public async ngOnInit(): Promise<void> {
         this.checkHereMapsLoaded();
+        try {
+            this.myProfile = await this.profileService.getOwn() as BuyerModel;
+            if (this.mapLoaded) {
+                this.createProfileMarker();
+            }
+        } catch (e) {
+
+        }
     }
 
     private async checkHereMapsLoaded() {
-        if (typeof H === 'undefined' || !H || !H.service || !H.service.Platform) {
+        if (!this.mapLoaded) {
             setTimeout(() => {
                 this.checkHereMapsLoaded();
             }, 500);
@@ -57,7 +75,9 @@ export class ProductsMapComponent {
         }
         this.buildPlatform();
         this.buildMap();
-        this.addProductMarkers();
+        if (this.products) {
+            this.addProductMarkers();
+        }
     }
 
     private buildPlatform() {
@@ -69,35 +89,27 @@ export class ProductsMapComponent {
     }
 
     private addProductMarkers() {
-
-        const productsBySeller = {};
-
+        const locations: LocationBag[] = [];
         for (const product of this.products) {
-            const sellerId = product.seller.id;
-            if (!productsBySeller[sellerId]) {
-                productsBySeller[sellerId] = [ product ];
-            } else {
-                productsBySeller[sellerId].push(product);
+            let location = locations.find(l => l.address === product.seller.address);
+            if (!location) {
+                location = {address: product.seller.address, products: []};
+                locations.push(location);
             }
+            location.products.push(product);
+        }
+        this.markersGroup.removeAll();
+        if (this.profileMarker) {
+            this.markersGroup.addObject(this.profileMarker);
+        }
+        for (const location of locations) {
+            const marker = this.mapsService.buildMarkerWith(location.address.location, 'red', 'P');
+            marker.setData(location);
+            this.markersGroup.addObject(marker);
         }
 
-        Object.entries(productsBySeller).forEach(([sellerId, products]) => {
-            console.log(sellerId, products);
-            // if (!initialData || val !== initialData[key]) {
-            //     propertiesToUpdate[key] = true;
-            // }
-        });
-
-        for (const product of this.products) {
-            this.createMarker(product.seller.address.location, 'Produs');
-        }
-
-        this.map.addObject(this.markers);
-
-        // get geo bounding box for the group and set it to the map
-        this.map.getViewModel().setLookAtData({
-            bounds: this.markers.getBoundingBox(),
-        });
+        this.addMarkersToMap();
+        this.recenterMap();
     }
 
     private buildMap() {
@@ -112,6 +124,7 @@ export class ProductsMapComponent {
                     lat: 45.7309454,
                     lng: 21.2677993,
                 },
+                pixelRatio: window.devicePixelRatio || 1,
             }
         );
 
@@ -124,29 +137,66 @@ export class ProductsMapComponent {
 
         // create default UI with layers provided by the platform
         this.ui = H.ui.UI.createDefault(this.map, defaultLayers);
-        this.addInfoBubble();
+        this.addClickEventListener();
     }
 
     private createMarker(coordinate, html) {
         const marker = new H.map.Marker(coordinate);
         // add custom data to the marker
         marker.setData(html);
-        this.markers.addObject(marker);
+        this.markersGroup.addObject(marker);
     }
 
-    private addInfoBubble() {
+    private createProfileMarker() {
+        if (this.profileMarker) {
+            if (this.markersGroup) {
+                this.markersGroup.removeObject(this.profileMarker);
+            }
+        }
+
+        this.profileMarker = this.mapsService.buildMarkerWith(this.myProfile.address.location, 'green', 'I');
+        this.profileMarker.setData('Poziția ta curentă: <br/> ' + this.myProfile.address.address);
+        this.markersGroup.addObject(this.profileMarker);
+
+        this.addMarkersToMap();
+        this.recenterMap();
+    }
+
+    private recenterMap() {
+        this.map.getViewModel().setLookAtData({
+            bounds: this.markersGroup.getBoundingBox(),
+        });
+    }
+
+    private addMarkersToMap() {
+        if (this.markersGroupAdded) {
+            return;
+        }
+        this.markersGroupAdded = true;
+        this.map.addObject(this.markersGroup);
+    }
+
+    private addClickEventListener() {
         // add 'tap' event listener, that opens info bubble, to the group
-        this.markers.addEventListener('tap', (evt) => {
+        this.markersGroup.addEventListener('tap', (evt) => {
             // event target is the marker itself, group is a parent event target
             // for all objects that it contains
-            const bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-                // read custom data
-                content: evt.target.getData(),
-            });
-            // show info bubble
-            this.ui.addBubble(bubble);
+            console.log(evt.target.getData());
+            console.log(evt.target.getGeometry());
+            this.selectedBag = evt.target.getData();
         }, false);
-
     }
 
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.products && changes.products.currentValue && !changes.products.firstChange) {
+            if (this.mapLoaded) {
+                this.addProductMarkers();
+            }
+        }
+    }
+}
+
+export interface LocationBag {
+    address: AddressModel;
+    products: ProductModel[];
 }
