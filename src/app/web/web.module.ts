@@ -12,6 +12,8 @@ import { ProfilePageComponent } from '@web/pages/profile-page/profile-page.compo
 import { GenericFormModule } from '@gf/generic-form.module';
 import { SearchAddressMapComponent } from '@web/components/search-address-map/search-address-map.component';
 import { ProductsMapComponent } from '@web/components/products-map/products-map.component';
+import { MyStorePageComponent } from '@web/pages/my-store/my-store-page.component';
+import { AddProductPageComponent } from '@web/pages/add-product-page/add-product-page.component';
 
 const matImports = [
     MatButtonModule,
@@ -27,7 +29,9 @@ const matImports = [
         ProductsListComponent,
         ProductsGridComponent,
         ProductsMapComponent,
+        MyStorePageComponent,
         SearchAddressMapComponent,
+        AddProductPageComponent,
     ],
     imports: [
         CommonModule,

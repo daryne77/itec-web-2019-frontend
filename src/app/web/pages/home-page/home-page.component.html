@@ -2,15 +2,18 @@
     <img src="./assets/img/dark-vegetables.jpg" class="bg"/>
 </div>
 <div class="overtext">
-    <div class="title">
+    <div class="title" *ngIf="userType === 'Buyer' || userType === 'Guest'">
         Descoperă produsele micilor antreprenori locali!
+    </div>
+    <div class="title" *ngIf="userType === 'Seller'">
+        Distribuie-ți produsele în toată țara!
     </div>
     <div class="action">
         <a *ngIf="userType === 'Buyer' || userType === 'Guest'" [routerLink]="'shop'">
             CUMPĂRĂ
         </a>
-        <a *ngIf="userType === 'Seller'" [routerLink]="'store'">
-            Verifică-ți magazinul
+        <a *ngIf="userType === 'Seller'" [routerLink]="'my-store'">
+            MAGAZINUL TĂU
         </a>
     </div>
 </div>

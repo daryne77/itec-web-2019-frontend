@@ -1,0 +1,12 @@
+<app-page-heading text="Produs nou"></app-page-heading>
+
+<div class="mb-5">
+    <gf-generic-form [elements]="formConfig"
+                     #form
+                     (submit)="submit()"
+    ></gf-generic-form>
+</div>
+
+<div class="d-flex justify-content-end my-5">
+    <gf-submit-button text="Adaugă" (click)="submit()" [loading]="saving"></gf-submit-button>
+</div>

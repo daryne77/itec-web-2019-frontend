@@ -29,4 +29,20 @@ export class ProductService {
         this.referencesHelper.populateReferences(products);
         return products;
     }
+
+    public async getOwn(): Promise<ProductModel[]> {
+        const url = `${this.baseUrl}GetOwn`;
+        const options = await this.auth.getOptions(true);
+
+        const products = await this.http.get<{ data: any }>(url, options).pipe(map(res => res.data)).toPromise();
+        this.referencesHelper.populateReferences(products);
+        return products;
+    }
+
+    public async create(product: ProductModel): Promise<ProductModel> {
+        const url = `${this.baseUrl}Add`;
+        const options = await this.auth.getOptions(true);
+
+        return await this.http.post<{ data: any }>(url, product, options).pipe(map(res => res.data)).toPromise();
+    }
 }

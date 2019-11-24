@@ -1,0 +1,9 @@
+<app-page-heading text="Magazinul meu"></app-page-heading>
+
+<app-products-list [products]="products"></app-products-list>
+
+<div class="d-flex justify-content-end my-5">
+    <a mat-raised-button color="primary" [routerLink]="['/add-product']">
+        Adaugă
+    </a>
+</div>
