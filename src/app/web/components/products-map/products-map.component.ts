@@ -140,13 +140,6 @@ export class ProductsMapComponent implements OnInit, OnChanges {
         this.addClickEventListener();
     }
 
-    private createMarker(coordinate, html) {
-        const marker = new H.map.Marker(coordinate);
-        // add custom data to the marker
-        marker.setData(html);
-        this.markersGroup.addObject(marker);
-    }
-
     private createProfileMarker() {
         if (this.profileMarker) {
             if (this.markersGroup) {
@@ -181,8 +174,6 @@ export class ProductsMapComponent implements OnInit, OnChanges {
         this.markersGroup.addEventListener('tap', (evt) => {
             // event target is the marker itself, group is a parent event target
             // for all objects that it contains
-            console.log(evt.target.getData());
-            console.log(evt.target.getGeometry());
             this.selectedBag = evt.target.getData();
         }, false);
     }
@@ -191,6 +182,7 @@ export class ProductsMapComponent implements OnInit, OnChanges {
         if (changes.products && changes.products.currentValue && !changes.products.firstChange) {
             if (this.mapLoaded) {
                 this.addProductMarkers();
+                this.selectedBag = null;
             }
         }
     }

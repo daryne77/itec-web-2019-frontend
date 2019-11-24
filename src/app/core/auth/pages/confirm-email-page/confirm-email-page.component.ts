@@ -41,6 +41,6 @@ export class ConfirmEmailPageComponent {
             this.snack.showError(e);
         }
 
-        await this.router.navigate(['/']);
+        await this.router.navigate(['/profile']);
     }
 }

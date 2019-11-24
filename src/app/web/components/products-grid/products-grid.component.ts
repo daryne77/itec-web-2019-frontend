@@ -12,8 +12,7 @@ export class ProductsGridComponent {
     @Input()
     public products: ProductModel[];
 
-    constructor(private router: Router) {
-    }
+    constructor(private router: Router) { }
 
     public goToProduct(product: ProductModel) {
         const url = `/product/${product.id}`;
