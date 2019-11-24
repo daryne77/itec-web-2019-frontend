@@ -15,6 +15,19 @@
     <div class="container">
         <button mat-button color="primary" (click)="addPhotoForm()">Încă o fotografie</button>
     </div>
+
+    <div class="container mt-3 d-flex flex-column">
+        <div>
+            Categorii
+        </div>
+        <div class="d-flex flex-column mt-2">
+            <div *ngFor="let category of categories; let idx=index">
+                <mat-checkbox [(ngModel)]="category.checked" [checked]="category.checked" name="{{idx}}-name">
+                    {{ category.name }}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="d-flex justify-content-end my-5">

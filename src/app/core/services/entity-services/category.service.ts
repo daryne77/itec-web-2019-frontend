@@ -22,8 +22,8 @@ export class CategoryService {
     public async getAll(): Promise<CategoryModel[]> {
         const url = `${this.baseUrl}GetAll`;
 
-        const products = await this.http.get<{ data: any }>(url).pipe(map(res => res.data)).toPromise();
-        this.referencesHelper.populateReferences(products);
-        return products;
+        const categories = await this.http.get<{ data: any }>(url).pipe(map(res => res.data)).toPromise();
+        this.referencesHelper.populateReferences(categories);
+        return categories;
     }
 }

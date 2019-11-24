@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthService } from '@core/auth/auth.service';
 import { ProductModel } from '@core/models/product';
 import { ReferencesHelperService } from '@shared/services/references-helper.service';
+import { CategoryModel } from '@core/models/category';
 
 @Injectable({
     providedIn: 'root',
@@ -56,5 +57,12 @@ export class ProductService {
         });
 
         return await this.http.post<{ data: any }>(url, photos, { headers, params }).pipe(map(res => res.data)).toPromise();
+    }
+
+    public async setCategories(product: ProductModel, categories: CategoryModel[]): Promise<ProductModel> {
+        const url = `${this.baseUrl}SetCategories/${product.id}`;
+        const options = await this.auth.getOptions(true);
+
+        return await this.http.post<{ data: any }>(url, categories, options).pipe(map(res => res.data)).toPromise();
     }
 }

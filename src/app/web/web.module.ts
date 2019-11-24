@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { WebRoutingModule } from '@web/web-routing.module';
-import { MatButtonModule, MatCardModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatTooltipModule } from '@angular/material';
 import { HomePageComponent } from '@web/pages/home-page/home-page.component';
 import { ShopPageComponent } from './pages/shop/shop-page.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
@@ -14,11 +14,13 @@ import { SearchAddressMapComponent } from '@web/components/search-address-map/se
 import { ProductsMapComponent } from '@web/components/products-map/products-map.component';
 import { MyStorePageComponent } from '@web/pages/my-store/my-store-page.component';
 import { AddProductPageComponent } from '@web/pages/add-product-page/add-product-page.component';
+import { FormsModule } from '@angular/forms';
 
 const matImports = [
     MatButtonModule,
     MatTooltipModule,
     MatCardModule,
+    MatCheckboxModule,
 ];
 
 @NgModule({
@@ -37,6 +39,7 @@ const matImports = [
         CommonModule,
         WebRoutingModule,
         SharedModule,
+        FormsModule,
         FontAwesomeModule,
         GenericFormModule,
         ...matImports,

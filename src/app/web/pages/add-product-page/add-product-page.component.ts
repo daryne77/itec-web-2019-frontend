@@ -1,9 +1,10 @@
-import { Component, Directive, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { SnackMessageService } from '@shared/services/snack-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElementConfig } from '@gf/model/config.interface';
 import { GenericFormComponent } from '@gf/generic-form.component';
 import { ProductService } from '@core/services/entity-services/product.service';
+import { CategoryModel } from '@core/models/category';
 
 @Component({
     selector: 'app-add-product-page',
@@ -21,6 +22,8 @@ export class AddProductPageComponent {
     public photoFormConfig: ElementConfig[];
     public photosFormConfig: {config: ElementConfig[]}[] = [];
 
+    public categories: CategoryModel[];
+
     public saving: boolean;
 
     constructor(private snack: SnackMessageService,
@@ -29,6 +32,7 @@ export class AddProductPageComponent {
                 private productService: ProductService) {
         this.formConfig = this.actr.snapshot.data.data.formConfig;
         this.photoFormConfig = this.actr.snapshot.data.data.photoFormConfig;
+        this.categories = this.actr.snapshot.data.data.categories;
         this.addPhotoForm();
     }
 
@@ -41,7 +45,9 @@ export class AddProductPageComponent {
             }
         });
 
-        if (!this.form.valid || !validPhotoForms) {
+        const selectedCategories = this.categories.filter(c => c.checked);
+
+        if (!this.form.valid || !validPhotoForms || !selectedCategories.length) {
             this.form.markAsTouched();
             this.snack.showErrorMessage('Verifică formularul!');
             return;
@@ -64,6 +70,7 @@ export class AddProductPageComponent {
         try {
             const product = await this.productService.create(this.form.value);
             await this.productService.setPhotos(product, thumbnailId, photoIds);
+            await this.productService.setCategories(product, selectedCategories);
             await this.router.navigate(['my-store']);
             this.snack.display('Succes!');
         } catch (e) {
@@ -75,5 +82,4 @@ export class AddProductPageComponent {
     public addPhotoForm() {
         this.photosFormConfig.push({ config: this.photoFormConfig });
     }
-
 }
