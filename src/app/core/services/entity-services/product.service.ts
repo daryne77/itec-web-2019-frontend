@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConstantsService } from '@core/services/constants.service';
 import { map } from 'rxjs/internal/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthService } from '@core/auth/auth.service';
 import { ProductModel } from '@core/models/product';
 import { ReferencesHelperService } from '@shared/services/references-helper.service';
@@ -44,5 +44,17 @@ export class ProductService {
         const options = await this.auth.getOptions(true);
 
         return await this.http.post<{ data: any }>(url, product, options).pipe(map(res => res.data)).toPromise();
+    }
+
+    public async setPhotos(product: ProductModel, thumbnailId: string, photos: { id: string }[]): Promise<ProductModel> {
+        const url = `${this.baseUrl}SetPhotos/${product.id}`;
+        const headers = await this.auth.getHeaders(true);
+        const params = new HttpParams({
+            fromObject: {
+                thumbnailId,
+            },
+        });
+
+        return await this.http.post<{ data: any }>(url, photos, { headers, params }).pipe(map(res => res.data)).toPromise();
     }
 }

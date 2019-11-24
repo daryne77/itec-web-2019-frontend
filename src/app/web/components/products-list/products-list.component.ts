@@ -11,6 +11,9 @@ export class ProductsListComponent {
   @Input()
   public products: ProductModel[];
 
+  @Input()
+  public isSeller: boolean;
+
   constructor() { }
 
 }
