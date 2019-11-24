@@ -11,7 +11,7 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatListModule,
+    MatListModule, MatProgressSpinnerModule,
     MatRadioModule,
     MatTooltipModule,
 } from '@angular/material';
@@ -33,6 +33,7 @@ import { SellerPageComponent } from '@web/pages/seller-page/seller-page.componen
 import { SellerAddressMapComponent } from '@web/components/seller-address-map/seller-address-map.component';
 import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.component';
 import { OrderPageComponent } from '@web/pages/order-page/order-page.component';
+import { PaymentRedirectPageComponent } from './pages/payment-redirect-page/payment-redirect-page.component';
 
 const matImports = [
     MatButtonModule,
@@ -65,6 +66,7 @@ const bootstrapImports = [
         SellerAddressMapComponent,
         MyOrdersPageComponent,
         OrderPageComponent,
+        PaymentRedirectPageComponent,
     ],
     imports: [
         CommonModule,
@@ -79,6 +81,7 @@ const bootstrapImports = [
         MatAutocompleteModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatProgressSpinnerModule,
     ],
 })
 export class WebModule {

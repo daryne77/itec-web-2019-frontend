@@ -20,45 +20,58 @@ import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.
 import { MyOrdersPageResolver } from '@web/pages/my-orders-page/my-orders-page-resolver.service';
 import { OrderPageComponent } from '@web/pages/order-page/order-page.component';
 import { OrderPageResolver } from '@web/pages/order-page/order-page-resolver.service';
+import { PaymentRedirectPageComponent } from '@web/pages/payment-redirect-page/payment-redirect-page.component';
 
 const routes: Routes = [
-    { path: '',  component: HomePageComponent, resolve: {
+    {
+        path: '', component: HomePageComponent, resolve: {
             data: HomePageResolver,
         },
     },
-    { path: 'shop',  component: ShopPageComponent, resolve: {
+    {
+        path: 'shop', component: ShopPageComponent, resolve: {
             data: ShopPageResolver,
         },
     },
-    { path: 'product/:id',  component: ProductPageComponent, resolve: {
+    {
+        path: 'product/:id', component: ProductPageComponent, resolve: {
             data: ProductPageResolver,
         },
     },
-    { path: 'seller/:id',  component: SellerPageComponent, resolve: {
+    {
+        path: 'seller/:id', component: SellerPageComponent, resolve: {
             data: SellerPageResolver,
         },
     },
-    { path: 'order/:id',  component: OrderPageComponent, resolve: {
+    {
+        path: 'order/:id', component: OrderPageComponent, resolve: {
             data: OrderPageResolver,
         },
     },
-    { path: 'my-store',  component: MyStorePageComponent, resolve: {
+    {
+        path: 'my-store', component: MyStorePageComponent, resolve: {
             data: MyStorePageResolver,
         },
         canActivate: [AuthGuard, RoleGuard],
         data: {authenticated: true, requiredRole: 'Seller'},
     },
-    { path: 'my-orders',  component: MyOrdersPageComponent, resolve: {
+    {
+        path: 'my-orders', component: MyOrdersPageComponent, resolve: {
             data: MyOrdersPageResolver,
         },
         canActivate: [AuthGuard, RoleGuard],
         data: {authenticated: true, requiredRole: 'Buyer'},
     },
-    { path: 'add-product',  component: AddProductPageComponent, resolve: {
+    {
+        path: 'add-product', component: AddProductPageComponent, resolve: {
             data: AddProductPageResolver,
         },
         canActivate: [AuthGuard, RoleGuard],
         data: {authenticated: true, requiredRole: 'Seller'},
+    },
+    {
+        path: 'payment-redirect',
+        component: PaymentRedirectPageComponent
     },
     {
         path: 'profile', component: ProfilePageComponent,
@@ -68,7 +81,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {authenticated: true},
     },
-    { path: '**', redirectTo: '' },
+    {path: '**', redirectTo: ''},
 ];
 
 @NgModule({
@@ -90,4 +103,5 @@ const routes: Routes = [
         OrderPageResolver,
     ],
 })
-export class WebRoutingModule { }
+export class WebRoutingModule {
+}

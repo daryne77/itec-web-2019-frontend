@@ -1,14 +1,27 @@
 <app-page-heading text="Comenzile mele"></app-page-heading>
 
-<mat-card *ngFor="let order of orders" class="d-flex full-width align-items-center mb-2 col-12" (click)="goToOrder(order)">
+<mat-card *ngFor="let order of orders" class="d-flex full-width align-items-center mb-2 col-12"
+>
     <div class="col-4 font-weight-bold">
         {{ order.totalPrice }} RON
     </div>
-    <div class="col-4">
-        {{ order. state }}
+    <div class="col-3">
+        {{ order.state }}
     </div>
-    <div class="col-4">
-        {{ order.products.length }} produs{{ order.products.length === 1 ? '' : 'e'}}
+    <div class="col-5 d-flex justify-content-between">
+        <div>
+            {{ order.products.length }} produs{{ order.products.length === 1 ? '' : 'e'}}
+        </div>
+
+        <div>
+            <button *ngIf="order.state=='WaitingPayment' || order.state=='New'" mat-raised-button color="primary"
+                    class="mr-2"
+                    (click)="pay(order)">Pay
+            </button>
+            <button mat-raised-button color="" (click)="goToOrder(order)">
+                View
+            </button>
+        </div>
     </div>
 </mat-card>
 
