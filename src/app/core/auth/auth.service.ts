@@ -55,7 +55,7 @@ export class AuthService {
     public async hasRole(role: string): Promise<boolean> {
         const session = await this.getSession();
 
-        if (!session.roles) {
+        if (!session || !session.roles) {
             return false;
         }
 
@@ -65,7 +65,7 @@ export class AuthService {
     public async getRoles(): Promise<string[]> {
         const session = await this.getSession();
 
-        if (!session.roles) {
+        if (!session || !session.roles) {
             return [];
         }
 
@@ -141,6 +141,8 @@ export class AuthService {
         this._token = <string>await this.storage.getItem(AuthService.tokenStorageKey).toPromise();
         if (this._token) {
             this._session = <AuthSession>await this.storage.getItem(AuthService.sessionStorageKey).toPromise();
+        } else {
+            this._session = undefined;
         }
         const differentStatus = initialStatus !== !!this._token;
         if (differentStatus) {

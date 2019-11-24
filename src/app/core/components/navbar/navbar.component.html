@@ -5,12 +5,12 @@
             <a class="mr-4" [routerLink]="'profile'">
                 Profil
             </a>
-            <a [routerLink]="" (click)="logout()">
+            <a (click)="logout()" class="pointer">
                 Deconectare
             </a>
         </div>
         <div *ngIf="!isLoggedIn">
-            <a [routerLink]="'login'">
+            <a class="mr-4" [routerLink]="'login'">
                 Autentificare
             </a>
             <a [routerLink]="'register'">

@@ -1,10 +1,6 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { SnackMessageService } from '@shared/services/snack-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ElementConfig } from '@gf/model/config.interface';
-import { GenericFormComponent } from '@gf/generic-form.component';
-import { ProductService } from '@core/services/entity-services/product.service';
-import { CategoryModel } from '@core/models/category';
 import { ProductModel } from '@core/models/product';
 
 @Component({
