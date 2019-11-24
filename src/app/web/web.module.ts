@@ -43,6 +43,9 @@ const matImports = [
     MatIconModule,
     MatChipsModule,
     MatListModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
 ];
 
 const bootstrapImports = [
@@ -73,12 +76,9 @@ const bootstrapImports = [
         FormsModule,
         FontAwesomeModule,
         GenericFormModule,
+        ReactiveFormsModule,
         ...bootstrapImports,
         ...matImports,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        MatInputModule,
     ],
 })
 export class WebModule {
