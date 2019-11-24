@@ -1,14 +1,14 @@
 <app-page-heading text="Comenzile mele"></app-page-heading>
 
-<mat-card *ngFor="let order of orders" class="d-flex full-width align-items-center mb-2 col-12">
-    <div class="col-4">
+<mat-card *ngFor="let order of orders" class="d-flex full-width align-items-center mb-2 col-12" (click)="goToOrder(order)">
+    <div class="col-4 font-weight-bold">
         {{ order.totalPrice }} RON
     </div>
     <div class="col-4">
         {{ order. state }}
     </div>
     <div class="col-4">
-        {{ order.products.length }} produs{{ order.products.length ? 'e' : ''}}
+        {{ order.products.length }} produs{{ order.products.length === 1 ? '' : 'e'}}
     </div>
 </mat-card>
 

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   public isLoggedIn = false;
   public loaded = false;
+  public isBuyer = false;
 
   constructor(private auth: AuthService, private router: Router) {
     this.auth.authStateChanged.subscribe(async state => {
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit {
   public async ngOnInit() {
     this.isLoggedIn = await this.auth.authStateAsync;
     this.loaded = true;
+    this.isBuyer = await this.auth.hasRole('Buyer');
   }
 
   public async logout() {

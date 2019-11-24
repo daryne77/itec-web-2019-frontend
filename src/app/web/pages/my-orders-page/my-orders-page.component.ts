@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { SnackMessageService } from '@shared/services/snack-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductModel } from '@core/models/product';
-import { SellerModel } from '@core/models/seller';
 import { OrderModel } from '@core/models/order';
 
 @Component({
@@ -17,5 +15,9 @@ export class MyOrdersPageComponent {
                 private router: Router,
                 private actr: ActivatedRoute) {
         this.orders = this.actr.snapshot.data.data.orders;
+    }
+
+    public goToOrder(order: OrderModel) {
+        this.router.navigate([`/order/${order.id}`]);
     }
 }

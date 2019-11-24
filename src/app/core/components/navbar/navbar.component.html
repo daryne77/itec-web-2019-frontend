@@ -2,18 +2,21 @@
     <div *ngIf="loaded" class="container d-flex align-items-center justify-content-between">
         <a class="logo" [routerLink]="'/'">Bunătățuri</a>
         <div *ngIf="isLoggedIn">
-            <a class="mr-4" [routerLink]="'profile'">
+            <a class="mr-4" [routerLink]="'/profile'">
                 Profil
+            </a>
+            <a *ngIf="isBuyer" class="mr-4" [routerLink]="'/my-orders'">
+                Comenzi
             </a>
             <a (click)="logout()" class="pointer">
                 Deconectare
             </a>
         </div>
         <div *ngIf="!isLoggedIn">
-            <a class="mr-4" [routerLink]="'login'">
+            <a class="mr-4" [routerLink]="'/login'">
                 Autentificare
             </a>
-            <a [routerLink]="'register'">
+            <a [routerLink]="'/register'">
                 Înregistrare
             </a>
         </div>

@@ -18,6 +18,8 @@ import { SellerPageComponent } from '@web/pages/seller-page/seller-page.componen
 import { SellerPageResolver } from '@web/pages/seller-page/seller-page-resolver.service';
 import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.component';
 import { MyOrdersPageResolver } from '@web/pages/my-orders-page/my-orders-page-resolver.service';
+import { OrderPageComponent } from '@web/pages/order-page/order-page.component';
+import { OrderPageResolver } from '@web/pages/order-page/order-page-resolver.service';
 
 const routes: Routes = [
     { path: '',  component: HomePageComponent, resolve: {
@@ -34,6 +36,10 @@ const routes: Routes = [
     },
     { path: 'seller/:id',  component: SellerPageComponent, resolve: {
             data: SellerPageResolver,
+        },
+    },
+    { path: 'order/:id',  component: OrderPageComponent, resolve: {
+            data: OrderPageResolver,
         },
     },
     { path: 'my-store',  component: MyStorePageComponent, resolve: {
@@ -81,6 +87,7 @@ const routes: Routes = [
         ProductPageResolver,
         SellerPageResolver,
         MyOrdersPageResolver,
+        OrderPageResolver,
     ],
 })
 export class WebRoutingModule { }
