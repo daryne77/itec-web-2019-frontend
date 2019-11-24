@@ -7,5 +7,5 @@ export class OrderModel extends EntityModel {
     public totalPrice: number;
     public state: string;
     public paymentInformation: string;
-    public products: ProductModel[];
+    public products: { product: ProductModel; unitPrice: number; quantity: 100; unit: string; }[];
 }

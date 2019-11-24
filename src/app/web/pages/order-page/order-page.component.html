@@ -1,0 +1,27 @@
+<app-page-heading text="Comandă"></app-page-heading>
+
+<div class="mb-5">
+    <span class="font-weight-bold mr-3">Status:</span> {{ order.state }}
+</div>
+
+<div>
+    <mat-card *ngFor="let p of order.products" class="d-flex full-width align-items-center mb-2 col-12">
+        <div class="col-3 font-weight-bold">
+            <a class="product" [routerLink]="'/product/' + p.product.id">{{ p.product.name }}</a>
+
+        </div>
+        <div class="col-3">
+            <a class="seller" [routerLink]="'/seller/' + p.product.seller.id">{{ p.product.seller.name }}</a>
+        </div>
+        <div class="col-4">
+            {{ p.quantity }} {{ p.unit }}
+        </div>
+        <div class="col-3">
+            {{ p.unitPrice * p.quantity }} RON
+        </div>
+    </mat-card>
+
+    <div class="price my-5 justify-content-end d-flex flex-row">
+        <div>Total: {{ order.totalPrice }} RON</div>
+    </div>
+</div>

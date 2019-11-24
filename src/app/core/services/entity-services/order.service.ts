@@ -29,4 +29,12 @@ export class OrderService {
         this.referencesHelper.populateReferences(orders);
         return orders;
     }
+
+    public async getOne(id: string): Promise<OrderModel> {
+        const url = `${this.baseUrl}GetOne/${id}`;
+        const options = await this.auth.getOptions(true);
+        const order = await this.http.get<{ data: any }>(url, options).pipe(map(res => res.data)).toPromise();
+        this.referencesHelper.populateReferences(order);
+        return order;
+    }
 }
