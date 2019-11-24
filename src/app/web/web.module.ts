@@ -30,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductPageComponent } from '@web/pages/product-page/product-page.component';
 import { CarouselModule } from 'ngx-bootstrap';
 import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
+import { SellerAddressMapComponent } from '@web/components/seller-address-map/seller-address-map.component';
 
 const matImports = [
     MatButtonModule,
@@ -59,6 +60,7 @@ const bootstrapImports = [
         AddProductPageComponent,
         ProductPageComponent,
         SellerPageComponent,
+        SellerAddressMapComponent,
     ],
     imports: [
         CommonModule,
