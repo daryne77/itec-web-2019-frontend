@@ -91,9 +91,7 @@ export class ProfilePageComponent {
         if (this.suggestions && this.suggestions.length) {
             const selectedSuggestion = this.suggestions.find(s => s.label === value);
             if (selectedSuggestion) {
-                console.log('selected from list', value, selectedSuggestion);
                 this.mapService.geocode(selectedSuggestion.locationId).then(gr => {
-                    console.log(gr);
                     this.mapAddress = {
                         address: gr.view[0].result[0].location.address.label,
                         city: gr.view[0].result[0].location.address.city,
@@ -102,7 +100,6 @@ export class ProfilePageComponent {
                             lng: gr.view[0].result[0].location.displayPosition.longitude,
                         },
                     };
-                    console.log(this.mapAddress);
                 });
                 return;
             }
