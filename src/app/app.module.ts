@@ -9,6 +9,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     MatIconModule,
     FontAwesomeModule,
     LoadingBarHttpClientModule,
+    CarouselModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

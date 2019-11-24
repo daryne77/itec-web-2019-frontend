@@ -1,0 +1,15 @@
+@import "styles/constants";
+
+.description-title {
+  font-size: 1.3em;
+}
+
+.price {
+  font-size: 2em;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.availability {
+  color: $gray-3;
+}

@@ -1,6 +1,6 @@
-// poza mare mica, nume, pret, seller,
 import { EntityModel } from '@gf/model/entity.model';
 import { SellerModel } from '@core/models/seller';
+import { CategoryModel } from '@core/models/category';
 
 export class ProductModel extends EntityModel {
     public name: string;
@@ -11,4 +11,5 @@ export class ProductModel extends EntityModel {
     public unit: 'Kg' | 'Litru' | 'Bucată';
     public seller: SellerModel;
     public availableUnits: number;
+    public categories: CategoryModel[];
 }

@@ -15,3 +15,7 @@ html, body { height: 100%; }
 .mat-form-field-label, .mat-form-field-subscript-wrapper {
   overflow: visible !important;
 }
+
+.pin {
+  color: $primary-color;
+}

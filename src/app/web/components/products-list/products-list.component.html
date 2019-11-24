@@ -1,4 +1,4 @@
-<mat-card *ngFor="let product of products" class="d-flex full-width align-items-center mb-2 col-12">
+<mat-card *ngFor="let product of products" class="d-flex full-width align-items-center mb-2 col-12" (click)="goToProduct(product)">
     <div class="col-4">
         <div class="d-flex align-items-center">
             <img mat-card-avatar [src]="product.thumbnail" class="mr-3">
