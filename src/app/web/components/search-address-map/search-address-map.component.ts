@@ -1,25 +1,37 @@
-import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    PLATFORM_ID,
+    SimpleChanges,
+    ViewChild
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { AddressModel } from '@core/models/address.model';
 
-declare var H: any;
+declare var H;
 
 @Component({
     selector: 'app-search-address-map',
     templateUrl: './search-address-map.component.html',
     styleUrls: ['./search-address-map.component.scss'],
 })
-export class SearchAddressMapComponent implements OnInit {
+export class SearchAddressMapComponent implements OnInit, OnChanges {
 
     public constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         this.isBrowser = isPlatformBrowser(this.platformId);
     }
 
-    @Output() public onLocationChange: EventEmitter<any> = new EventEmitter();
+    @Output() public locationChange: EventEmitter<any> = new EventEmitter();
     @Input() public initialAddress: AddressModel;
 
-    @ViewChild('map', { static: true })
+    @ViewChild('map', {static: true})
     public mapElement: ElementRef;
     private platform: any;
     private map: any;
@@ -39,8 +51,12 @@ export class SearchAddressMapComponent implements OnInit {
         this.checkHereMapsLoaded();
     }
 
+    private get mapLoaded(): boolean {
+        return typeof H !== 'undefined' && H && H.service && H.service.Platform;
+    }
+
     private async checkHereMapsLoaded() {
-        if (typeof H === 'undefined' || !H || !H.service || !H.service.Platform) {
+        if (!this.mapLoaded) {
             setTimeout(() => {
                 this.checkHereMapsLoaded();
             }, 500);
@@ -50,7 +66,7 @@ export class SearchAddressMapComponent implements OnInit {
         this.buildMap();
 
         if (this.initialAddress) {
-            this.addMarker(this.initialAddress.location);
+            this.setAddressMarker(this.initialAddress.location);
         }
     }
 
@@ -104,7 +120,7 @@ export class SearchAddressMapComponent implements OnInit {
             const target = ev.target;
             if (target instanceof H.map.Marker) {
                 this.behavior.enable();
-                this.onLocationChange.emit(this.marker.getGeometry());
+                this.locationChange.emit(this.marker.getGeometry());
             }
         }, false);
 
@@ -119,9 +135,22 @@ export class SearchAddressMapComponent implements OnInit {
         }, false);
     }
 
-    private addMarker(position) {
-        this.marker = new H.map.Marker(position, { volatility: true });
+    private setAddressMarker(position) {
+        if (this.marker) {
+            this.map.removeObject(this.marker);
+            this.marker = null;
+        }
+        this.marker = new H.map.Marker(position, {volatility: true});
         this.marker.draggable = true;
         this.map.addObject(this.marker);
+        this.map.setCenter(position);
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.initialAddress && changes.initialAddress.currentValue) {
+            if (this.initialAddress && this.mapLoaded && this.map) {
+                this.setAddressMarker(this.initialAddress.location);
+            }
+        }
     }
 }

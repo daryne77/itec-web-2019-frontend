@@ -1,14 +1,31 @@
 <app-page-heading text="Profilul meu"></app-page-heading>
 
-<div class="mb-5">
+<div class="">
     <gf-generic-form [elements]="formConfig"
                      #form
                      (submit)="submit()"
                      (loaded)="formBuild()"
     ></gf-generic-form>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Adresa" aria-label="Adresa" [matAutocomplete]="auto"
+                       [formControl]="addressFormControl">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let filteredAddress of suggestions" [value]="filteredAddress.label">
+                        <span>{{filteredAddress.label}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+                <mat-checkbox [(ngModel)]="autoDetectAddress">Detectează adresa automat la mutarea pin-ului.</mat-checkbox>
+        </div>
+    </div>
+</div>
 
-<app-search-address-map [initialAddress]="mapAddress" (onLocationChange)="updateLocation($event)"></app-search-address-map>
+<app-search-address-map [initialAddress]="mapAddress"
+                        (locationChange)="updateLocation($event)"></app-search-address-map>
 
 <div class="d-flex justify-content-end my-5">
     <gf-submit-button text="Salvează" (click)="submit()" [loading]="saving"></gf-submit-button>
