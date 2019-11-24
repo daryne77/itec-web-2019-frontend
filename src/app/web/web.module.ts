@@ -29,6 +29,7 @@ import { AddProductPageComponent } from '@web/pages/add-product-page/add-product
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductPageComponent } from '@web/pages/product-page/product-page.component';
 import { CarouselModule } from 'ngx-bootstrap';
+import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
 
 const matImports = [
     MatButtonModule,
@@ -57,6 +58,7 @@ const bootstrapImports = [
         SearchAddressMapComponent,
         AddProductPageComponent,
         ProductPageComponent,
+        SellerPageComponent,
     ],
     imports: [
         CommonModule,

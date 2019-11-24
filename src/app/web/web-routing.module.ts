@@ -14,6 +14,8 @@ import { AddProductPageComponent } from '@web/pages/add-product-page/add-product
 import { AddProductPageResolver } from '@web/pages/add-product-page/add-product-page-resolver.service';
 import { ProductPageResolver } from '@web/pages/product-page/product-page-resolver.service';
 import { ProductPageComponent } from '@web/pages/product-page/product-page.component';
+import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
+import { SellerPageResolver } from '@web/pages/seller-page/seller-page-resolver.service';
 
 const routes: Routes = [
     { path: '',  component: HomePageComponent, resolve: {
@@ -26,6 +28,10 @@ const routes: Routes = [
     },
     { path: 'product/:id',  component: ProductPageComponent, resolve: {
             data: ProductPageResolver,
+        },
+    },
+    { path: 'seller/:id',  component: SellerPageComponent, resolve: {
+            data: SellerPageResolver,
         },
     },
     { path: 'my-store',  component: MyStorePageComponent, resolve: {
@@ -65,6 +71,7 @@ const routes: Routes = [
         MyStorePageResolver,
         AddProductPageResolver,
         ProductPageResolver,
+        SellerPageResolver,
     ],
 })
 export class WebRoutingModule { }

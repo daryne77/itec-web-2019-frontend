@@ -71,4 +71,10 @@ export class ProductService {
 
         return await this.http.get<{ data: any }>(url).pipe(map(res => res.data)).toPromise();
     }
+
+    public async getForSeller(id: string): Promise<ProductModel[]> {
+        const url = `${this.baseUrl}GetForSeller/${id}`;
+
+        return await this.http.get<{ data: any }>(url).pipe(map(res => res.data)).toPromise();
+    }
 }
