@@ -1,0 +1,44 @@
+<app-page-heading [text]="product.name"></app-page-heading>
+
+<carousel>
+    <slide style="height: 400px">
+        <img [src]="product.thumbnail" style="display: block; width: 100%;">
+    </slide>
+    <slide *ngFor="let photo of product.photos" style="height: 400px">
+        <img [src]="photo" style="display: block; width: 100%;">
+    </slide>
+</carousel>
+
+<div class="container mt-3 mb-5">
+    <div class="mb-3">
+        <mat-chip-list>
+            <mat-chip *ngFor="let category of product.categories">{{ category.fullName }}</mat-chip>
+        </mat-chip-list>
+    </div>
+    <div class="d-flex flex-row mb-3">
+        <fa-icon [icon]="['fas', 'map-marker']" class="mr-3 pin"></fa-icon>
+        <div>
+            {{ product.seller.address?.city }}
+        </div>
+    </div>
+
+    <div class="mb-5 description-content">
+        {{ product.description }}
+    </div>
+
+    <div class="bottom d-flex flex-row justify-content-between mb-5">
+        <div>
+            <div class="price">
+                {{ product.price }} RON / {{ product.unit | lowercase }}
+            </div>
+
+            <div class="availability">
+                Disponibilitate: {{ product.availableUnits }}
+            </div>
+        </div>
+        <div class="d-flex align-items-end">
+            <button *ngIf="isBuyer" mat-raised-button color="primary">Cumpără</button>
+            <button *ngIf="isSeller" mat-raised-button color="primary">Editează</button>
+        </div>
+    </div>
+</div>

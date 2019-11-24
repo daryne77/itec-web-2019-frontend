@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductModel } from '@core/models/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -14,6 +15,10 @@ export class ProductsListComponent {
   @Input()
   public isSeller: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  public goToProduct(product: ProductModel) {
+    this.router.navigate([`/product/${product.id}`]);
+  }
 
 }

@@ -1,3 +1,39 @@
-<app-products-map [products]="products"></app-products-map>
-<app-products-list [products]="products"></app-products-list>
-<app-products-grid [products]="products"></app-products-grid>
+<app-page-heading text="Magazin"></app-page-heading>
+
+<div class="d-flex flex-row">
+    <div class="col-4 left">
+        <div class="mb-5">
+            <mat-radio-group [(ngModel)]="type">
+                <div class="d-flex flex-column">
+                    <div class="font-weight-bold mb-3">Afișare</div>
+                    <mat-radio-button  [value]="'list'">Listă</mat-radio-button>
+                    <mat-radio-button [value]="'grid'">Grid</mat-radio-button>
+                    <mat-radio-button [value]="'map'">Hartă</mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+
+        <div class="font-weight-bold mb-3">Categorii</div>
+
+        <mat-list>
+            <div class="d-flex flex-column">
+                <mat-list-item *ngFor="let category of categories"
+                               (click)="selectCategory(category)"
+                               class="pointer category"
+                               [class.selected]="selectedCategory === category"
+                >
+                    {{ category.name }}
+                </mat-list-item>
+                <button *ngIf="selectedCategory" mat-button class="mb-3" (click)="selectCategory(null)">
+                    Șterge filtrul
+                </button>
+            </div>
+        </mat-list>
+    </div>
+
+    <div class="col-8">
+        <app-products-map *ngIf="type ==='map'" [products]="displayedProducts"></app-products-map>
+        <app-products-list *ngIf="type ==='list'" [products]="displayedProducts"></app-products-list>
+        <app-products-grid *ngIf="type ==='grid'" [products]="displayedProducts"></app-products-grid>
+    </div>
+</div>
