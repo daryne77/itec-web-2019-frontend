@@ -1,7 +1,7 @@
 <div class="d-flex row flex-wrap">
     <div class="col-12 col-md-6 col-lg-3" *ngFor="let product of products">
         <mat-card class="mb-3 product-card d-flex flex-column">
-            <img mat-card-image src="./assets/img/egg.jpg" class="product-img"/>
+            <img mat-card-image [src]="product.thumbnail" class="product-img"/>
             <mat-card-header class="align-items-center">
                 <mat-card-subtitle>
                     <div class="d-flex flex-row flex-nowrap">
@@ -23,4 +23,8 @@
             </mat-card-footer>
         </mat-card>
     </div>
+</div>
+
+<div *ngIf="!products.length">
+    Încă nu este nimic aici :(
 </div>

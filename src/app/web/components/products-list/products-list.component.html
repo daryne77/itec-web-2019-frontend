@@ -1,7 +1,7 @@
 <mat-card *ngFor="let product of products" class="d-flex full-width align-items-center mb-2 col-12">
     <div class="col-4">
         <div class="d-flex align-items-center">
-            <img mat-card-avatar src="./assets/img/egg.jpg" class="mr-3">
+            <img mat-card-avatar [src]="product.thumbnail" class="mr-3">
             <div class="font-weight-bold">
                 {{ product.name }}
             </div>
@@ -27,3 +27,7 @@
         </div>
     </div>
 </mat-card>
+
+<div *ngIf="!products.length">
+    Încă nu este nimic aici :(
+</div>
