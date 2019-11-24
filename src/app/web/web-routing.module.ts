@@ -16,6 +16,8 @@ import { ProductPageResolver } from '@web/pages/product-page/product-page-resolv
 import { ProductPageComponent } from '@web/pages/product-page/product-page.component';
 import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
 import { SellerPageResolver } from '@web/pages/seller-page/seller-page-resolver.service';
+import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.component';
+import { MyOrdersPageResolver } from '@web/pages/my-orders-page/my-orders-page-resolver.service';
 
 const routes: Routes = [
     { path: '',  component: HomePageComponent, resolve: {
@@ -39,6 +41,12 @@ const routes: Routes = [
         },
         canActivate: [AuthGuard, RoleGuard],
         data: {authenticated: true, requiredRole: 'Seller'},
+    },
+    { path: 'my-orders',  component: MyOrdersPageComponent, resolve: {
+            data: MyOrdersPageResolver,
+        },
+        canActivate: [AuthGuard, RoleGuard],
+        data: {authenticated: true, requiredRole: 'Buyer'},
     },
     { path: 'add-product',  component: AddProductPageComponent, resolve: {
             data: AddProductPageResolver,
@@ -72,6 +80,7 @@ const routes: Routes = [
         AddProductPageResolver,
         ProductPageResolver,
         SellerPageResolver,
+        MyOrdersPageResolver,
     ],
 })
 export class WebRoutingModule { }

@@ -31,6 +31,7 @@ import { ProductPageComponent } from '@web/pages/product-page/product-page.compo
 import { CarouselModule } from 'ngx-bootstrap';
 import { SellerPageComponent } from '@web/pages/seller-page/seller-page.component';
 import { SellerAddressMapComponent } from '@web/components/seller-address-map/seller-address-map.component';
+import { MyOrdersPageComponent } from '@web/pages/my-orders-page/my-orders-page.component';
 
 const matImports = [
     MatButtonModule,
@@ -61,6 +62,7 @@ const bootstrapImports = [
         ProductPageComponent,
         SellerPageComponent,
         SellerAddressMapComponent,
+        MyOrdersPageComponent,
     ],
     imports: [
         CommonModule,
